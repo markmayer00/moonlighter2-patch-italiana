@@ -36,9 +36,8 @@ GIOCO
   Questa e' una patch amatoriale non ufficiale, senza alcun legame con loro.
 
 
-SE SEI DEI TWR
-  Questa patch esiste per non lasciare il vostro lavoro inutilizzabile dopo
-  l'aggiornamento del gioco. Se preferite gestirne voi la distribuzione, o
-  volete che venga ritirata, basta dirlo. Lo strumento che fa la conversione
-  e' incluso nei sorgenti: funziona su qualsiasi build futura e potete usarlo
+CONSENSO
+  Questa patch e' pubblicata con il consenso di PolyZen, autore della
+  traduzione. Lo strumento che fa la conversione e' incluso nei sorgenti:
+  funziona su qualsiasi build futura del gioco e i TWR possono usarlo
   liberamente.

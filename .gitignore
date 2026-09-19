@@ -13,11 +13,6 @@ __pycache__/
 *.rar
 *.exe
 
-# i testi tradotti sono lavoro dei TWR: distribuiti solo come allegato
-# alle Release, cosi' possono essere rimossi senza riscrivere la cronologia.
-# Togli questa riga solo se hai il loro consenso a includerli nel repository.
-italiano.json.gz
-
 # scarti
 shot.png
 *.wav

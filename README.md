@@ -4,7 +4,8 @@ Riporta la traduzione italiana sulla versione **1.0** del gioco, dove quella
 originale ha smesso di funzionare, e aggiunge una voce **Italiano** nel menu
 delle lingue.
 
-> **La traduzione è opera dei TWR — autore PolyZen.**
+> **La traduzione è opera dei TWR — autore PolyZen**, e questa patch è
+> pubblicata con il suo consenso.
 > Il 92% delle stringhe viene parola per parola dal loro lavoro.
 > Idea e realizzazione della patch per la 1.0: **Nefer**.
 > Dettagli in [CREDITI.txt](CREDITI.txt).
@@ -59,8 +60,7 @@ Spiegazione estesa: **[docs/come-funziona.md](docs/come-funziona.md)**
 
 ## Compilare dai sorgenti
 
-Serve Python 3.10+ e il file dei testi `italiano.json.gz` accanto ai sorgenti
-(vedi sotto).
+Serve Python 3.10+.
 
 ```bash
 python -m venv .venv
@@ -85,12 +85,9 @@ da 24 MB a oltre 300.
 
 ### Il file dei testi
 
-`italiano.json.gz` contiene le 5.826 stringhe italiane e **non è incluso in
-questo repository**: è il lavoro di traduzione dei TWR, non il codice. Lo trovi
-dentro gli archivi nella sezione Releases, nella cartella `sorgenti`.
-
-Il codice in `src/` è uno strumento generico: legge la tabella, abbina per
-identificativo e riscrive. Non contiene testi del gioco.
+`src/italiano.json.gz` contiene le 5.826 stringhe italiane, incluse qui con il
+consenso di PolyZen. Restano lavoro dei TWR e non sono coperte dalla licenza
+del codice.
 
 ## Contenuto
 
@@ -100,6 +97,7 @@ identificativo e riscrive. Non contiene testi del gioco.
 | `src/ml2_patch_it.py` | versione da riga di comando |
 | `src/chiptune.py` | la musica, sintetizzata a ogni avvio |
 | `src/banner.png` | l'immagine dell'intestazione |
+| `src/italiano.json.gz` | le 5.826 stringhe italiane |
 | `docs/come-funziona.md` | com'è stata fatta la conversione |
 
 ---
