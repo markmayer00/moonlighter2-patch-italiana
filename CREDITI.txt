@@ -1,0 +1,44 @@
+CREDITI
+=======
+
+TRADUZIONE ITALIANA
+  TWR - autore: PolyZen
+
+  La traduzione italiana di Moonlighter 2: The Endless Vault e' opera loro.
+  E' stata realizzata per la build Early Access "Blob-Life Balance Update"
+  (maggio 2026). Tutto il merito del lavoro di traduzione e' dei TWR.
+
+  Il 92% delle stringhe presenti in questa patch viene direttamente dal loro
+  lavoro, parola per parola.
+
+
+PATCH PER LA VERSIONE 1.0
+  Idea e realizzazione: Nefer
+
+  Con la 1.0 (settembre 2026) il gioco ha cambiato il modo di impacchettare i
+  file: i testi sono finiti dentro data.unity3d e la traduzione originale ha
+  smesso di funzionare. Questa patch:
+
+    - riporta i testi dei TWR dentro la nuova struttura, riga per riga;
+    - traduce le 365 stringhe che la 1.0 ha aggiunto e che nella Early Access
+      non esistevano (schede personaggi e bestiario, i vantaggi "Bomba", le
+      armi Eterne, i dialoghi finali, le nuove impostazioni, i tutorial);
+    - aggiunge la voce "Italiano" nel menu delle lingue del gioco.
+
+  Il glossario segue quello dei TWR: Volatile -> Bomba, Endless Vault ->
+  Scrigno Eterno, Hex -> Maledizione, Wound -> Lacerazione, Perk -> Vantaggio,
+  Perkmeter -> Vantaggiometro, Watcher -> Guardiano, Puppet -> Burattino,
+  Golden Guild -> Gilda Dorata, e cosi via.
+
+
+GIOCO
+  Moonlighter 2: The Endless Vault - Digital Sun / 11 bit studios.
+  Questa e' una patch amatoriale non ufficiale, senza alcun legame con loro.
+
+
+SE SEI DEI TWR
+  Questa patch esiste per non lasciare il vostro lavoro inutilizzabile dopo
+  l'aggiornamento del gioco. Se preferite gestirne voi la distribuzione, o
+  volete che venga ritirata, basta dirlo. Lo strumento che fa la conversione
+  e' incluso nei sorgenti: funziona su qualsiasi build futura e potete usarlo
+  liberamente.
