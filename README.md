@@ -23,7 +23,22 @@ Se il tuo antivirus fa storie con l'eseguibile singolo, scarica
 `PatchItaliana_Moonlighter2_cartella.zip`: stessa cosa, ma senza
 auto-estrazione, quindi non fa scattare le euristiche.
 
+### "Windows ha protetto il PC"
+
+È SmartScreen, e non significa che sia stato trovato un virus: avvisa per
+qualsiasi programma che non abbia ancora una reputazione, cioè tutti quelli non
+firmati con un certificato di code signing a pagamento. Premi **Ulteriori
+informazioni → Esegui comunque**.
+
+Se preferisci non fidarti di un eseguibile, il codice è tutto qui e puoi
+ricompilarlo da solo in due minuti: vedi *Compilare dai sorgenti*.
+
 ## Come si usa
+
+**Prima di estrarre:** clic destro sullo zip scaricato → Proprietà → spunta
+**"Annulla blocco"** in basso → OK. Windows marca tutto quello che arriva da
+internet e il marchio passa ai file estratti; togliendolo prima, l'avviso di
+SmartScreen di solito non compare.
 
 1. Doppio clic su `PatchItaliana_Moonlighter2.exe`
 2. Il programma cerca il gioco da solo; se non lo trova, premi **Sfoglia...**
