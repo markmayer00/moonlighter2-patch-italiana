@@ -7,7 +7,7 @@ delle lingue.
 > **La traduzione è opera dei TWR — autore PolyZen**, e questa patch è
 > pubblicata con il suo consenso.
 > Il 92% delle stringhe viene parola per parola dal loro lavoro.
-> Idea e realizzazione della patch per la 1.0: **Nefer**.
+> Idea e realizzazione della patch per la 1.0: **MarkMayer**.
 > Dettagli in [CREDITI.txt](CREDITI.txt).
 
 **Copertura:** 5.828 stringhe su 5.832 (99,9%).
