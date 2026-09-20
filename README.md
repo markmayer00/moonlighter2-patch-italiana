@@ -5,7 +5,7 @@
 <p align="center">
   <a href="../../releases/latest"><img alt="Ultima versione" src="https://img.shields.io/github/v/release/markmayer00/moonlighter2-patch-italiana?label=versione&color=b9873a&cacheSeconds=1800"></a>
   <a href="../../releases"><img alt="Download" src="https://img.shields.io/github/downloads/markmayer00/moonlighter2-patch-italiana/total?label=download&color=b9873a&cacheSeconds=1800"></a>
-  <img alt="Copertura" src="https://img.shields.io/badge/tradotto-99,9%25-1f6f52">
+  <img alt="Copertura" src="https://img.shields.io/badge/tradotto-100%25-1f6f52&cacheSeconds=1800">
   <a href="LICENSE"><img alt="Licenza del codice" src="https://img.shields.io/badge/codice-MIT-666"></a>
 </p>
 
@@ -33,7 +33,9 @@ delle lingue.
 > Idea e realizzazione della patch per la 1.0: **MarkMayer**.
 > Dettagli in [CREDITI.txt](CREDITI.txt).
 
-**Copertura:** 5.828 stringhe su 5.832 (99,9%).
+**Copertura: 100%** — tutte le 5.828 stringhe di testo del gioco.
+(Le altre 4 righe della tabella sono celle vuote o segnaposto degli
+sviluppatori, lasciate in bianco anche dalle altre lingue.)
 
 ---
 

@@ -6,7 +6,7 @@ Traduzione: TWR - autore PolyZen.   (vedi CREDITI.txt)
 Rimette in italiano la versione 1.0, dove la traduzione originale non
 funzionava piu' perche' il gioco ha cambiato il modo di impacchettare i file.
 
-Copertura: 5.828 stringhe su 5.832 (99,9%).
+Copertura: 100% - tutte le 5.828 stringhe di testo del gioco.
 Nel menu delle lingue compare una voce "Italiano": l'inglese resta inglese.
 
 
