@@ -61,7 +61,8 @@ SmartScreen di solito non compare.
 
 Per tornare indietro c'è il pulsante **Ripristina**. Un backup del file
 originale (`data.unity3d.orig`) viene creato in automatico alla prima
-esecuzione.
+esecuzione, e viene rifatto da solo quando il gioco si aggiorna — così
+riapplicare la patch non riporta mai indietro il bundle.
 
 Funziona con qualsiasi copia PC della 1.0, Steam compresa. Attenzione: la
 *verifica integrità dei file* di Steam rimette i file originali, e la patch va

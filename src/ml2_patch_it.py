@@ -139,7 +139,8 @@ def main():
     print(f"Testi italiani: {len(it)} voci  ({meta.get('traduzione', '')})")
 
     print("Apro data.unity3d ...")
-    env, obj, d = find_project(orig)
+    with open(orig, "rb") as f:            # in memoria: l'handle non deve restare aperto
+        env, obj, d = find_project(f.read())
     raw = obj.get_raw_data()
     header, tail = raw[:28], raw[d["consumed"]:]
 

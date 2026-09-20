@@ -239,6 +239,90 @@ def scan_game_dirs(progress=lambda s: None, want=8, stop=None):
                 trovati.append(dirpath)
     return trovati
 
+# ------------------------------------------------------------------ backup
+def impronta(path, blocco=1 << 20):
+    """SHA-256 di un file, letto a blocchi."""
+    import hashlib
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while True:
+            b = f.read(blocco)
+            if not b:
+                break
+            h.update(b)
+    return h.hexdigest()
+
+def contiene_italiano(path):
+    """Apre il bundle e guarda se una delle lingue e' gia' stata tradotta.
+
+    Il file viene letto in memoria invece che aperto per percorso: UnityPy
+    terrebbe l'handle aperto e la copia del backup fallirebbe.
+    """
+    try:
+        with open(path, "rb") as f:
+            _, _, d = find_project(f.read())
+    except Exception:
+        return False
+    for g in d["grids"]:
+        for r in g["records"]:
+            if r["id"] == "MAINMENU_SETTINGS_LANGUAGE_CURRENT":
+                return "Italiano" in r["cells"].values()
+    return False
+
+def prepara_backup(data_dir, log):
+    """Garantisce un backup che corrisponda alla versione del gioco installata ORA.
+
+    Il patcher riparte sempre dal backup: se il gioco viene aggiornato e il
+    backup resta quello vecchio, riapplicare la patch riporterebbe indietro il
+    bundle. Per evitarlo ogni patch registra l'impronta del file prodotto; se
+    al giro dopo data.unity3d non e' piu' quello, il gioco e' stato aggiornato
+    e il backup va rifatto.
+    """
+    dst = os.path.join(data_dir, "data.unity3d")
+    orig = os.path.join(data_dir, "data.unity3d.orig")
+    info = os.path.join(data_dir, "data.unity3d.patchinfo")
+
+    if not os.path.isfile(orig):
+        log("Creo il backup (data.unity3d.orig) ...")
+        shutil.copy2(dst, orig)
+        return
+
+    attuale = impronta(dst)
+    registrato = None
+    if os.path.isfile(info):
+        try:
+            with open(info, encoding="utf-8") as f:
+                registrato = json.load(f).get("prodotto")
+        except (OSError, ValueError):
+            registrato = None
+
+    if registrato is not None:
+        valido = (attuale == registrato)
+    elif attuale == impronta(orig):
+        valido = True                 # il gioco non e' patchato: il backup e' una copia fedele
+    else:
+        log("Controllo se il gioco e' gia' tradotto ...")
+        valido = contiene_italiano(dst)
+
+    if valido:
+        log("Backup verificato, riparto da quello.")
+    else:
+        log("Il gioco e' stato aggiornato: il vecchio backup non vale piu'.")
+        log("Ne creo uno nuovo dalla versione installata adesso.")
+        shutil.copy2(dst, orig)
+
+def registra_patch(data_dir):
+    """Annota cosa ha prodotto il patcher, per riconoscere un aggiornamento del gioco."""
+    info = os.path.join(data_dir, "data.unity3d.patchinfo")
+    try:
+        with open(info, "w", encoding="utf-8") as f:
+            json.dump({"prodotto": impronta(os.path.join(data_dir, "data.unity3d")),
+                       "nota": "impronta del file scritto dalla patch italiana; "
+                               "se non corrisponde, il gioco e' stato aggiornato"},
+                      f, indent=1)
+    except OSError:
+        pass
+
 # ------------------------------------------------------------------ patch
 def do_patch(data_dir, target, log):
     """Scrive l'italiano nella colonna `target` e rinomina quella voce di menu."""
@@ -246,17 +330,14 @@ def do_patch(data_dir, target, log):
     orig = os.path.join(data_dir, "data.unity3d.orig")
     if not os.path.isfile(dst):
         raise RuntimeError(f"Non trovo data.unity3d in:\n{data_dir}")
-    if not os.path.isfile(orig):
-        log("Creo il backup (data.unity3d.orig) ...")
-        shutil.copy2(dst, orig)
-    else:
-        log("Backup gia presente, riparto da quello.")
+    prepara_backup(data_dir, log)
 
     it = carica_italiano()
     log(f"Testi italiani caricati: {len(it)} voci.")
 
     log("Apro i file del gioco ...")
-    env, obj, d = find_project(orig)
+    with open(orig, "rb") as f:            # in memoria: l'handle non deve restare aperto
+        env, obj, d = find_project(f.read())
     raw = obj.get_raw_data()
     header, tail = raw[:28], raw[d["consumed"]:]
 
@@ -296,6 +377,7 @@ def do_patch(data_dir, target, log):
     obj.set_raw_data(new_raw)
     with open(dst, "wb") as f:
         f.write(env.file.save(packer="original"))
+    registra_patch(data_dir)
     log("FATTO. Nel gioco vai in Impostazioni e scegli la lingua ITALIANO.")
 
 def do_restore(data_dir, log):
@@ -304,6 +386,12 @@ def do_restore(data_dir, log):
     if not os.path.isfile(orig):
         raise RuntimeError("Backup non trovato: non c'e nulla da ripristinare.")
     shutil.copy2(orig, dst)
+    info = os.path.join(data_dir, "data.unity3d.patchinfo")
+    if os.path.isfile(info):
+        try:
+            os.remove(info)
+        except OSError:
+            pass
     log("Ripristinati i file originali del gioco.")
 
 # ------------------------------------------------------------------ GUI
@@ -355,7 +443,7 @@ class App(tk.Tk):
         self.btn_go.pack(side="left", padx=8)
         self.btn_undo = ttk.Button(f3, text="Ripristina", command=self.restore)
         self.btn_undo.pack(side="left")
-        self.var_music = tk.BooleanVar(value=True)
+        self.var_music = tk.BooleanVar(value=False)
         ttk.Checkbutton(f3, text="♪ Musica", variable=self.var_music,
                         command=self.toggle_music).pack(side="right")
 
@@ -387,8 +475,7 @@ class App(tk.Tk):
         self.log("")
         self.log("Premi \"Trova il gioco\", poi \"APPLICA LA TRADUZIONE\".")
 
-        self.music = None
-        self.start_music()
+        self.music = None          # la musica parte solo se l'utente la accende
         self.after(300, self.autodetect)
 
     # ---------------- intestazione grafica ----------------

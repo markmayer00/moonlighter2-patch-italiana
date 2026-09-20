@@ -75,8 +75,9 @@ DOMANDE FREQUENTI
     Il programma te le elenca e ti fa scegliere quale tradurre.
 
   Il gioco si aggiorna e torna in inglese.
-    Normale: l'aggiornamento sostituisce i file. Cancella il vecchio
-    data.unity3d.orig nella cartella _Data e riapplica la patch.
+    Normale: l'aggiornamento sostituisce i file. Riapri il programma e premi
+    di nuovo APPLICA. Il backup viene riconosciuto come superato e rifatto da
+    solo sulla versione nuova: non devi cancellare niente a mano.
 
   Antivirus sospettoso?
     E' un effetto normale degli eseguibili creati con PyInstaller.
