@@ -143,6 +143,20 @@ def steam_paths():
                 seen.add(common.lower()); libs.append(common)
     return libs
 
+def dischi_fissi():
+    """Lettere dei soli dischi fissi presenti: niente CD, chiavette o unita' di rete."""
+    import string
+    out = []
+    try:
+        import ctypes
+        for L in string.ascii_uppercase:
+            r = f"{L}:\\"
+            if ctypes.windll.kernel32.GetDriveTypeW(ctypes.c_wchar_p(r)) == 3:  # DRIVE_FIXED
+                out.append(L)
+    except Exception:
+        out = [L for L in string.ascii_uppercase if os.path.isdir(f"{L}:\\")]
+    return out
+
 def candidate_roots():
     roots, seen = [], set()
     def add(p):
@@ -157,30 +171,61 @@ def candidate_roots():
     home = os.path.expanduser("~")
     for sub in ("Downloads", "Desktop", "Documents", "Games", "Giochi"):
         add(os.path.join(home, sub))
-    for drive in "CDEFGH":
+    dischi = dischi_fissi()
+    for drive in dischi:
         for sub in ("SteamLibrary", "Games", "Giochi", "Epic Games", "XboxGames", "GOG Games"):
             add(f"{drive}:\\{sub}")
-    for drive in "CDEFGH":
+    for drive in dischi:
         add(f"{drive}:\\")
     return roots
 
 SKIP_DIRS = {"windows", "appdata", "$recycle.bin", "system volume information",
              "programdata", "node_modules", "onedrive"}
 
+def e_moonlighter(dirpath, filenames):
+    """Distingue Moonlighter 2 dagli altri giochi Unity.
+
+    Ogni build Unity ha un app.info di poche decine di byte con dentro
+    l'editore e il nome del prodotto: qui e' "11BitStudios / Moonlighter 2
+    The Endless Vault". Senza quello ci si affida al nome della cartella o
+    dell'eseguibile che sta accanto.
+    """
+    if "app.info" in filenames:
+        try:
+            with open(os.path.join(dirpath, "app.info"), encoding="utf-8", errors="ignore") as f:
+                return "moonlighter" in f.read(400).lower()
+        except OSError:
+            pass
+    if "moonlighter" in os.path.basename(dirpath).lower():
+        return True
+    try:
+        padre = os.path.dirname(dirpath)
+        return any(f.lower().endswith(".exe") and "moonlighter" in f.lower()
+                   for f in os.listdir(padre))
+    except OSError:
+        return False
+
 def looks_like_game(dirpath, filenames, dirnames):
     return (os.path.basename(dirpath).endswith("_Data")
             and "data.unity3d" in filenames
-            and ("il2cpp_data" in dirnames or "StreamingAssets" in dirnames))
+            and ("il2cpp_data" in dirnames or "StreamingAssets" in dirnames)
+            and e_moonlighter(dirpath, filenames))
 
-def scan_game_dirs(progress=lambda s: None, want=8):
-    hits, others, seen = [], [], set()
+def scan_game_dirs(progress=lambda s: None, want=8, stop=None):
+    """Cerca le installazioni. `stop` e' un threading.Event: se scatta, si ferma."""
+    def fermare():
+        return stop is not None and stop.is_set()
+    trovati, seen = [], set()
     for root in candidate_roots():
-        if len(hits) >= want:
+        if len(trovati) >= want or fermare():
             break
         progress(f"Cerco in {root} ...")
         depth_root = root.rstrip("\\").count(os.sep)
         limit = 6 if len(root) > 3 else 4
         for dirpath, dirnames, filenames in os.walk(root, topdown=True):
+            if fermare():
+                dirnames[:] = []
+                break
             if dirpath.count(os.sep) - depth_root > limit:
                 dirnames[:] = []
                 continue
@@ -191,8 +236,8 @@ def scan_game_dirs(progress=lambda s: None, want=8):
                 if key in seen:
                     continue
                 seen.add(key)
-                (hits if "moonlighter" in key else others).append(dirpath)
-    return hits + others
+                trovati.append(dirpath)
+    return trovati
 
 # ------------------------------------------------------------------ patch
 def do_patch(data_dir, target, log):
@@ -269,6 +314,8 @@ class App(tk.Tk):
         self.geometry("800x680")
         self.minsize(740, 600)
         self.busy = False
+        self.scanning = False
+        self.stop_scan = threading.Event()
         pad = {"padx": 10, "pady": 6}
 
         self.banner_src = None
@@ -302,7 +349,7 @@ class App(tk.Tk):
 
         f3 = ttk.Frame(self)
         f3.pack(fill="x", **pad)
-        self.btn_auto = ttk.Button(f3, text="Trova il gioco", command=self.autodetect)
+        self.btn_auto = ttk.Button(f3, text="Trova il gioco", command=self.on_auto_button)
         self.btn_auto.pack(side="left")
         self.btn_go = ttk.Button(f3, text="APPLICA LA TRADUZIONE", command=self.apply)
         self.btn_go.pack(side="left", padx=8)
@@ -423,8 +470,11 @@ class App(tk.Tk):
 
     def set_busy(self, on):
         self.busy = on
-        for b in (self.btn_auto, self.btn_go, self.btn_undo):
+        for b in (self.btn_go, self.btn_undo):
             b.configure(state="disabled" if on else "normal")
+        # durante la ricerca il pulsante resta premibile: serve per interromperla
+        self.btn_auto.configure(state="normal" if (not on or self.scanning) else "disabled")
+        self.btn_auto.configure(text="Interrompi ricerca" if self.scanning else "Trova il gioco")
         self.bar.start(12) if on else self.bar.stop()
 
     def run_bg(self, fn):
@@ -461,6 +511,8 @@ class App(tk.Tk):
                     p = cand
                     break
         self.var_game.set(p)
+        if self.scanning:
+            self.cancel_scan()
         if not os.path.isfile(os.path.join(p, "data.unity3d")):
             messagebox.showwarning(APP, "In questa cartella non c'e data.unity3d.\n\n"
                                         "Scegli la cartella del gioco (quella con l'eseguibile)\n"
@@ -478,28 +530,56 @@ class App(tk.Tk):
         ttk.Button(box, text="Usa questa", command=box.destroy).pack(pady=12)
         self.wait_window(box)
         return var.get()
+    def on_auto_button(self):
+        """Lo stesso pulsante avvia la ricerca e la interrompe."""
+        if self.scanning:
+            self.cancel_scan()
+        else:
+            self.autodetect()
+
+    def cancel_scan(self):
+        self.stop_scan.set()
+        self.log("Ricerca interrotta.")
 
     def autodetect(self):
+        if self.busy:
+            return
+        self.stop_scan.clear()
+        self.scanning = True
+
         def job():
-            if self.var_game.get():
-                return
-            self.log("\nCerco l'installazione del gioco... (puo richiedere un minuto)")
-            found = scan_game_dirs(self.log)
-            if len(found) > 1:
-                self.log(f"Trovate {len(found)} installazioni.")
-                box, done = [found[0]], threading.Event()
-                def ask():
-                    try:
-                        box[0] = self.choose_install(found)
-                    finally:
-                        done.set()
-                self.after(0, ask)
-                done.wait(300)
-                self.var_game.set(box[0]); self.log("Uso: " + box[0])
-            elif found:
-                self.var_game.set(found[0]); self.log("Trovato il gioco: " + found[0])
-            else:
-                self.log("Gioco non trovato: indicalo a mano con \"Sfoglia\".")
+            try:
+                if self.var_game.get():
+                    return
+                self.log("")
+                self.log("Cerco l'installazione del gioco...")
+                self.log('Se sai dove si trova, usa "Sfoglia..." oppure "Interrompi ricerca".')
+                found = scan_game_dirs(self.log, stop=self.stop_scan)
+                if self.var_game.get():
+                    return                      # nel frattempo l'ha scelta l'utente
+                if self.stop_scan.is_set() and not found:
+                    return
+                if len(found) > 1:
+                    self.log(f"Trovate {len(found)} installazioni.")
+                    box, done = [found[0]], threading.Event()
+                    def ask():
+                        try:
+                            box[0] = self.choose_install(found)
+                        finally:
+                            done.set()
+                    self.after(0, ask)
+                    done.wait(300)
+                    self.var_game.set(box[0])
+                    self.log("Uso: " + box[0])
+                elif found:
+                    self.var_game.set(found[0])
+                    self.log("Trovato il gioco: " + found[0])
+                else:
+                    self.log('Gioco non trovato: indicalo a mano con "Sfoglia...".')
+            finally:
+                # lo stato dei pulsanti lo ripristina run_bg, che legge self.scanning
+                self.scanning = False
+
         self.run_bg(job)
 
     def apply(self):
