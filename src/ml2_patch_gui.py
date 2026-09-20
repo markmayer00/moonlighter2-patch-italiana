@@ -15,6 +15,8 @@ from tkinter import ttk, filedialog, messagebox
 
 APP = "Patch Italiana - Moonlighter 2"
 CREDITI = "Traduzione dei TWR - autore PolyZen"
+URL_SEGNALA = "https://github.com/markmayer00/moonlighter2-patch-italiana/issues/new/choose"
+URL_DISCORD = "https://discord.gg/85ayAcHRfH"
 
 # codice colonna -> etichetta nel menu a tendina
 LINGUE = [
@@ -454,9 +456,15 @@ class App(tk.Tk):
                            bg="#1e1e1e", fg="#dcdcdc", insertbackground="#dcdcdc")
         self.txt.pack(fill="both", expand=True, padx=10, pady=(10, 4))
 
+        piede = ttk.Frame(self)
+        piede.pack(fill="x", padx=10, pady=(2, 0))
+        self.link(piede, "Segnala un problema", URL_SEGNALA).pack(side="left")
+        ttk.Label(piede, text="·", foreground="#999").pack(side="left", padx=6)
+        self.link(piede, "Discord dei TWR", URL_DISCORD).pack(side="left")
+
         self.scroll_lbl = tk.Label(self, anchor="w", font=("Consolas", 10, "bold"),
                                    bg="#000000", fg="#39ff14")
-        self.scroll_lbl.pack(fill="x", padx=10, pady=(0, 10))
+        self.scroll_lbl.pack(fill="x", padx=10, pady=(6, 10))
         self.scroll_text = (
             "*** MOONLIGHTER 2: THE ENDLESS VAULT - PATCH ITALIANA ***   "
             "la traduzione e opera dei TWR - autore PolyZen - tutto il merito e loro   ***   "
@@ -477,6 +485,22 @@ class App(tk.Tk):
 
         self.music = None          # la musica parte solo se l'utente la accende
         self.after(300, self.autodetect)
+
+    # ---------------- collegamenti ----------------
+    def link(self, padre, testo, url):
+        """Un'etichetta che si comporta da collegamento."""
+        lbl = tk.Label(padre, text=testo, fg="#0b62c4", cursor="hand2",
+                       font=("Segoe UI", 9, "underline"))
+        lbl.bind("<Button-1>", lambda e: self.apri(url))
+        return lbl
+
+    def apri(self, url):
+        import webbrowser
+        try:
+            webbrowser.open(url)
+        except Exception as e:
+            self.log(f"(non riesco ad aprire il browser: {e})")
+            self.log(url)
 
     # ---------------- intestazione grafica ----------------
     def load_banner(self):

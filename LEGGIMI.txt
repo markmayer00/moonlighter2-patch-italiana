@@ -82,3 +82,13 @@ DOMANDE FREQUENTI
   Antivirus sospettoso?
     E' un effetto normale degli eseguibili creati con PyInstaller.
     Nella cartella "sorgenti" c'e' il codice, leggibile e verificabile.
+
+
+SEGNALAZIONI E CONTATTI
+  Qualcosa non funziona?
+    https://github.com/markmayer00/moonlighter2-patch-italiana/issues
+
+  Il Discord dei TWR, autori della traduzione:
+    https://discord.gg/85ayAcHRfH
+    E' il posto giusto per parlare dei testi: un termine che non convince,
+    una battuta che suona male.

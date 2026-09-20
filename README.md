@@ -17,7 +17,9 @@
   <sub>Windows · 25 MB · sempre l'ultima versione</sub><br>
   <sub>
     <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2_cartella.zip">versione cartella</a>, se l'antivirus blocca ·
-    <a href="../../releases">tutte le versioni</a>
+    <a href="../../releases">tutte le versioni</a><br>
+    <a href="../../issues/new/choose">segnala un problema</a> ·
+    <a href="https://discord.gg/85ayAcHRfH">Discord dei TWR</a>
   </sub>
 </p>
 
@@ -129,6 +131,18 @@ del codice.
 | `src/banner.png` | l'immagine dell'intestazione |
 | `src/italiano.json.gz` | le 5.826 stringhe italiane |
 | `docs/come-funziona.md` | com'è stata fatta la conversione |
+
+---
+
+## Problemi e segnalazioni
+
+Se qualcosa non funziona, **[apri una segnalazione](../../issues/new/choose)**: c'è
+un modulo che chiede le poche cose che servono per capire il problema (versione,
+dove hai comprato il gioco, quale lingua hai sostituito).
+
+Per parlare della traduzione in sé — un termine che non convince, una battuta che
+suona male — il posto giusto è il **[Discord dei TWR](https://discord.gg/85ayAcHRfH)**:
+i testi sono opera loro.
 
 ---
 

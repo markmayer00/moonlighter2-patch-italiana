@@ -1,0 +1,86 @@
+name: Segnala un problema
+description: Qualcosa non funziona con la patch
+labels: ["da verificare"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazie della segnalazione. Più dettagli dai, prima si risolve.
+
+        Se il problema riguarda **come è tradotta** una frase (un termine sbagliato,
+        una battuta che suona male), scrivilo pure qui: lo giriamo ai TWR, che sono
+        gli autori della traduzione.
+
+  - type: input
+    id: versione
+    attributes:
+      label: Versione della patch
+      description: La trovi nel nome della release da cui hai scaricato.
+      placeholder: "v1.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: copia
+    attributes:
+      label: Da dove viene la tua copia del gioco
+      options:
+        - Steam
+        - Epic Games
+        - GOG
+        - Xbox / Microsoft Store
+        - Altro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lingua
+    attributes:
+      label: Quale lingua hai sostituito
+      description: È quella che hai scelto nel menu a tendina del programma.
+      options:
+        - Polacco (predefinita)
+        - Portoghese
+        - Russo
+        - Giapponese
+        - Coreano
+        - Cinese
+        - Tedesco
+        - Francese
+        - Spagnolo
+        - Inglese
+    validations:
+      required: true
+
+  - type: textarea
+    id: cosa
+    attributes:
+      label: Cosa succede
+      description: Racconta cosa hai fatto e cosa è andato storto.
+      placeholder: |
+        Esempio: premo APPLICA, il programma arriva a "Scrivo i file del gioco"
+        e poi si chiude senza dire niente.
+    validations:
+      required: true
+
+  - type: textarea
+    id: schermata
+    attributes:
+      label: Immagini
+      description: Se è un problema di testo nel gioco, una foto dello schermo aiuta molto. Trascinala qui.
+
+  - type: textarea
+    id: messaggi
+    attributes:
+      label: Cosa scriveva il programma
+      description: Copia qui il riquadro nero del programma, se il problema è successo durante la patch.
+      render: text
+
+  - type: checkboxes
+    id: verifiche
+    attributes:
+      label: Prima di segnalare
+      options:
+        - label: Ho provato a premere di nuovo APPLICA
+        - label: Ho letto le domande frequenti nel LEGGIMI.txt
+        - label: Nel gioco ho selezionato la lingua ITALIANO (non English)
