@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="src/banner.png" alt="Moonlighter 2: The Endless Vault — traduzione italiana" width="900">
+</p>
+
+<p align="center">
+  <a href="../../releases/latest"><img alt="Ultima versione" src="https://img.shields.io/github/v/release/markmayer00/moonlighter2-patch-italiana?label=versione&color=b9873a"></a>
+  <a href="../../releases"><img alt="Download" src="https://img.shields.io/github/downloads/markmayer00/moonlighter2-patch-italiana/total?label=download&color=b9873a"></a>
+  <img alt="Copertura" src="https://img.shields.io/badge/tradotto-99,9%25-1f6f52">
+  <a href="LICENSE"><img alt="Licenza del codice" src="https://img.shields.io/badge/codice-MIT-666"></a>
+</p>
+
 # Patch Italiana — Moonlighter 2: The Endless Vault
 
 Riporta la traduzione italiana sulla versione **1.0** del gioco, dove quella
