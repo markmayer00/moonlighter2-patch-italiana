@@ -10,16 +10,18 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2.zip"><img src="src/bottone-download.png" alt="Scarica la patch" width="280"></a>
+  <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2.zip"><img src="src/bottone-download.png" alt="Scarica la patch" height="44"></a>
+  &nbsp;
+  <a href="../../issues/new/choose"><img src="src/bottone-segnala.png" alt="Segnala un problema" height="44"></a>
+  &nbsp;
+  <a href="https://discord.gg/85ayAcHRfH"><img src="src/bottone-discord.png" alt="Discord dei TWR" height="44"></a>
 </p>
 
 <p align="center">
   <sub>Windows · 25 MB · sempre l'ultima versione</sub><br>
   <sub>
     <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2_cartella.zip">versione cartella</a>, se l'antivirus blocca ·
-    <a href="../../releases">tutte le versioni</a><br>
-    <a href="../../issues/new/choose">segnala un problema</a> ·
-    <a href="https://discord.gg/85ayAcHRfH">Discord dei TWR</a>
+    <a href="../../releases">tutte le versioni</a>
   </sub>
 </p>
 
@@ -77,6 +79,16 @@ che si può fare è riempire di italiano una lingua esistente e rinominare la su
 voce di menu in "Italiano". Di serie viene usato il polacco; dal menu a tendina
 si può scegliere un'altra lingua da sostituire. Le altre restano intatte.
 
+## Problemi e segnalazioni
+
+Se qualcosa non funziona, **[apri una segnalazione](../../issues/new/choose)**: c'è
+un modulo che chiede le poche cose che servono per capire il problema (versione,
+dove hai comprato il gioco, quale lingua hai sostituito).
+
+Per parlare della traduzione in sé — un termine che non convince, una battuta che
+suona male — il posto giusto è il **[Discord dei TWR](https://discord.gg/85ayAcHRfH)**:
+i testi sono opera loro.
+
 ---
 
 ## Come funziona
@@ -131,18 +143,6 @@ del codice.
 | `src/banner.png` | l'immagine dell'intestazione |
 | `src/italiano.json.gz` | le 5.826 stringhe italiane |
 | `docs/come-funziona.md` | com'è stata fatta la conversione |
-
----
-
-## Problemi e segnalazioni
-
-Se qualcosa non funziona, **[apri una segnalazione](../../issues/new/choose)**: c'è
-un modulo che chiede le poche cose che servono per capire il problema (versione,
-dove hai comprato il gioco, quale lingua hai sostituito).
-
-Per parlare della traduzione in sé — un termine che non convince, una battuta che
-suona male — il posto giusto è il **[Discord dei TWR](https://discord.gg/85ayAcHRfH)**:
-i testi sono opera loro.
 
 ---
 
