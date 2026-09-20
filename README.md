@@ -34,8 +34,6 @@ delle lingue.
 > Dettagli in [CREDITI.txt](CREDITI.txt).
 
 **Copertura: 100%** — tutte le 5.828 stringhe di testo del gioco.
-(Le altre 4 righe della tabella sono celle vuote o segnaposto degli
-sviluppatori, lasciate in bianco anche dalle altre lingue.)
 
 ---
 
