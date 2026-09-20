@@ -1,0 +1,83 @@
+PATCH ITALIANA - Moonlighter 2: The Endless Vault (versione 1.0)
+================================================================
+
+Traduzione: TWR - autore PolyZen.   (vedi CREDITI.txt)
+
+Rimette in italiano la versione 1.0, dove la traduzione originale non
+funzionava piu' perche' il gioco ha cambiato il modo di impacchettare i file.
+
+Copertura: 5.828 stringhe su 5.832 (99,9%).
+Nel menu delle lingue compare una voce "Italiano": l'inglese resta inglese.
+
+
+PRIMA DI ESTRARRE  (evita gli avvisi di Windows)
+  Clic destro sul file .zip scaricato -> Proprieta' -> in basso spunta
+  "Annulla blocco" -> OK.  Poi estrai.
+
+  Windows marca tutto cio' che arriva da internet, e il marchio passa anche ai
+  file estratti. Togliendolo prima dell'estrazione, l'avviso di SmartScreen di
+  solito non compare affatto.
+
+
+PROCEDURA - 3 passaggi
+  1. Doppio clic su PatchItaliana_Moonlighter2.exe
+
+     Se compare comunque "Windows ha protetto il PC":
+       Ulteriori informazioni -> Esegui comunque.
+
+     Non e' un antivirus che ha trovato qualcosa: SmartScreen avvisa per i
+     programmi che non conosce ancora, cioe' tutti quelli non firmati con un
+     certificato a pagamento. Il codice sorgente e' nella cartella "sorgenti"
+     e su GitHub.
+
+  2. Il programma cerca il gioco da solo. Se non lo trova, premi "Sfoglia..."
+     e indica la cartella dove si trova l'eseguibile del gioco.
+
+  3. Premi "APPLICA LA TRADUZIONE" e aspetta un minuto.
+
+  Poi avvia il gioco, vai in Impostazioni -> Lingua e scegli ITALIANO.
+
+  Non serve scaricare nient'altro.
+
+
+PER TORNARE COME PRIMA
+  Riapri il programma e premi "Ripristina".
+  Il backup viene creato in automatico la prima volta (data.unity3d.orig,
+  nella cartella _Data del gioco). Non cancellarlo.
+
+
+PERCHE' "AL POSTO DEL POLACCO"
+  Il gioco ha un numero fisso di lingue e non se ne possono aggiungere.
+  Quello che si puo' fare e' prendere una lingua esistente, riempirla di
+  italiano e rinominare la sua voce di menu in "Italiano".
+
+  Di serie viene usato il polacco, perche' e' quello che a un giocatore
+  italiano serve meno. Se ti serve, dal menu a tendina puoi scegliere un'altra
+  lingua: portoghese, russo, giapponese, coreano, cinese, tedesco, francese,
+  spagnolo o inglese. Tutte le altre restano intatte.
+
+
+DOMANDE FREQUENTI
+
+  Perche' leggo "Si'" e "puo'" invece di "Si" e "puo'" con l'accento?
+    Il font del gioco non contiene i due caratteri i ed o con accento grave:
+    nessuna delle lingue previste dagli sviluppatori li usa, solo l'italiano.
+    Dove comparivano, al loro posto si vedeva un quadratino vuoto. Sono stati
+    sostituiti con l'apostrofo, come si faceva con le macchine da scrivere.
+    Tutte le altre lettere accentate (a, e, u, é) si vedono normalmente.
+
+  Funziona con la versione Steam?
+    Si. Il programma trova anche le installazioni su altri dischi.
+    ATTENZIONE: "Verifica integrita dei file di gioco" in Steam rimette i file
+    originali, e dovrai riapplicare la patch.
+
+  Ho piu' copie del gioco installate.
+    Il programma te le elenca e ti fa scegliere quale tradurre.
+
+  Il gioco si aggiorna e torna in inglese.
+    Normale: l'aggiornamento sostituisce i file. Cancella il vecchio
+    data.unity3d.orig nella cartella _Data e riapplica la patch.
+
+  Antivirus sospettoso?
+    E' un effetto normale degli eseguibili creati con PyInstaller.
+    Nella cartella "sorgenti" c'e' il codice, leggibile e verificabile.

@@ -13,7 +13,7 @@ TRADUZIONE ITALIANA
 
 
 PATCH PER LA VERSIONE 1.0
-  Idea e realizzazione: Nefer
+  Idea e realizzazione: MarkMayer
 
   Con la 1.0 (settembre 2026) il gioco ha cambiato il modo di impacchettare i
   file: i testi sono finiti dentro data.unity3d e la traduzione originale ha

@@ -4,7 +4,7 @@ Patch Italiana per Moonlighter 2: The Endless Vault (versione 1.0) - riga di com
 ===================================================================================
 
 Traduzione: TWR - autore PolyZen (realizzata per la build Early Access).
-Idea e realizzazione della patch per la 1.0: Nefer.
+Idea e realizzazione della patch per la 1.0: MarkMayer.
 
 Come funziona
 -------------

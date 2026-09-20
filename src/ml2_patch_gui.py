@@ -329,7 +329,7 @@ class App(tk.Tk):
         else:
             ttk.Label(self, text="Patch Italiana per Moonlighter 2: The Endless Vault",
                       font=("Segoe UI", 13, "bold")).pack(anchor="w", **pad)
-        ttk.Label(self, text=CREDITI + "   ·   patch per la 1.0: Nefer",
+        ttk.Label(self, text=CREDITI + "   ·   patch per la 1.0: MarkMayer",
                   foreground="#666").pack(anchor="w", padx=10, pady=(8, 0))
 
         f1 = ttk.LabelFrame(self, text="Cartella del gioco")
@@ -372,7 +372,7 @@ class App(tk.Tk):
         self.scroll_text = (
             "*** MOONLIGHTER 2: THE ENDLESS VAULT - PATCH ITALIANA ***   "
             "la traduzione e opera dei TWR - autore PolyZen - tutto il merito e loro   ***   "
-            "idea e realizzazione della patch per la 1.0: NEFER   ***   "
+            "idea e realizzazione della patch per la 1.0: MARKMAYER   ***   "
             "5826 voci di testo riportate sulla nuova struttura del gioco   ***   "
             "nel gioco scegli la lingua ITALIANO   ***   "
             "il backup e automatico: puoi sempre tornare indietro   ***   "
@@ -383,7 +383,7 @@ class App(tk.Tk):
         self.log("Benvenuto.")
         self.log(CREDITI + ". Questo programma riporta il loro lavoro sulla versione 1.0")
         self.log("e aggiunge le stringhe introdotte dalla 1.0 (schede, nuovi vantaggi, armi, dialoghi).")
-        self.log("Idea e realizzazione della patch: Nefer.")
+        self.log("Idea e realizzazione della patch: MarkMayer.")
         self.log("")
         self.log("Premi \"Trova il gioco\", poi \"APPLICA LA TRADUZIONE\".")
 
