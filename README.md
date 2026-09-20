@@ -10,18 +10,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2.zip"><img src="src/bottone-download.png" alt="Scarica la patch" height="44"></a>
+  <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2.zip"><img src="src/bottone-download.png" alt="Scarica la patch" height="40"></a>
   &nbsp;
-  <a href="../../issues/new/choose"><img src="src/bottone-segnala.png" alt="Segnala un problema" height="44"></a>
+  <a href="../../issues/new/choose"><img src="src/bottone-segnala.png" alt="Segnala un problema" height="40"></a>
   &nbsp;
-  <a href="https://discord.gg/85ayAcHRfH"><img src="src/bottone-discord.png" alt="Discord dei TWR" height="44"></a>
+  <a href="https://discord.gg/85ayAcHRfH"><img src="src/bottone-discord.png" alt="Discord dei TWR" height="40"></a>
+  &nbsp;
+  <a href="CHANGELOG.md"><img src="src/bottone-novita.png" alt="Cosa è cambiato" height="40"></a>
 </p>
 
 <p align="center">
   <sub>Windows · 25 MB · sempre l'ultima versione</sub><br>
   <sub>
     <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2_cartella.zip">versione cartella</a>, se l'antivirus blocca ·
-    <a href="../../releases">tutte le versioni</a>
+    <a href="../../releases">tutte le versioni</a> ·
+    <a href="CHANGELOG.md">cosa è cambiato</a>
   </sub>
 </p>
 
