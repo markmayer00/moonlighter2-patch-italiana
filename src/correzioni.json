@@ -1,0 +1,12 @@
+{
+ "_nota": "Correzioni applicate sopra la traduzione dei TWR, dopo le segnalazioni degli utenti. Tenute separate per sapere sempre cosa e' stato ritoccato e perche'.",
+ "correzioni": [
+  {
+   "chiave": "NARRATIVE|Interactions_ShopChestInteraction_0f6e438",
+   "da": "Progressione Del Mercante.",
+   "a": "Progressione del Mercante",
+   "perche": "Voce di un menu di scelte: le altre (Baule, Mobilia, Decorazioni, Indietro) non hanno il punto finale, e nemmeno l'inglese 'Merchant Progression' o le altre lingue. La preposizione va minuscola come nel resto della traduzione TWR (Grimorio del Mercante, Lama del Tiratore: 440 casi minuscoli contro 44).",
+   "segnalazione": "issue #1"
+  }
+ ]
+}

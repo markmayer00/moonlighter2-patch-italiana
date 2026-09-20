@@ -5,6 +5,18 @@ del gioco è segnalato: in quel caso conviene riapplicare la patch.
 
 ---
 
+## v1.1.2
+
+**Correzione di una stringa** — tocca i testi, conviene riapplicare.
+
+- Nel menu del baule del negozio la voce *"Progressione Del Mercante."* aveva un
+  punto finale che le altre voci non hanno, e che non c'è nemmeno nell'inglese
+  *Merchant Progression*. La preposizione era maiuscola, mentre nel resto della
+  traduzione è minuscola. Ora si legge **"Progressione del Mercante"**
+- Prima segnalazione arrivata dalle Issues ([#1](../../issues/1))
+
+---
+
 ## v1.1.1
 
 **Dove segnalare i problemi**
