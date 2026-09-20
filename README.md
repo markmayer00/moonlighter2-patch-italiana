@@ -9,6 +9,18 @@
   <a href="LICENSE"><img alt="Licenza del codice" src="https://img.shields.io/badge/codice-MIT-666"></a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2.zip"><img src="src/bottone-download.png" alt="Scarica la patch" width="280"></a>
+</p>
+
+<p align="center">
+  <sub>Windows · 25 MB · sempre l'ultima versione</sub><br>
+  <sub>
+    <a href="https://github.com/markmayer00/moonlighter2-patch-italiana/releases/latest/download/PatchItaliana_Moonlighter2_cartella.zip">versione cartella</a>, se l'antivirus blocca ·
+    <a href="../../releases">tutte le versioni</a>
+  </sub>
+</p>
+
 # Patch Italiana — Moonlighter 2: The Endless Vault
 
 Riporta la traduzione italiana sulla versione **1.0** del gioco, dove quella
@@ -25,16 +37,7 @@ delle lingue.
 
 ---
 
-## Scarica
-
-Vai alla pagina **[Releases](../../releases)** e prendi
-`PatchItaliana_Moonlighter2.zip`.
-
-Se il tuo antivirus fa storie con l'eseguibile singolo, scarica
-`PatchItaliana_Moonlighter2_cartella.zip`: stessa cosa, ma senza
-auto-estrazione, quindi non fa scattare le euristiche.
-
-### "Windows ha protetto il PC"
+## "Windows ha protetto il PC"
 
 È SmartScreen, e non significa che sia stato trovato un virus: avvisa per
 qualsiasi programma che non abbia ancora una reputazione, cioè tutti quelli non
